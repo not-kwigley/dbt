@@ -3,6 +3,7 @@
 ### Features
 
 - Capture changes to macros in `state:modified`. Introduce new `state:` sub-selectors: `modified.body`, `modified.configs`, `modified.persisted_descriptions`, `modified.relation`, `modified.macros` ([#2704](https://github.com/dbt-labs/dbt/issues/2704), [#3278](https://github.com/dbt-labs/dbt/issues/3278), [#3559](https://github.com/dbt-labs/dbt/issues/3559))
+- Enable setting configs in schema files for models, seeds, snapshots, analyses, tests ([#2401](https://github.com/dbt-labs/dbt/issues/2401), [#3616](https://github.com/dbt-labs/dbt/pull/3616))
 
 ### Fixes
 
@@ -12,6 +13,9 @@
 ### Under the hood
 
 - Add `build` RPC method, and a subset of flags for `build` task ([#3595](https://github.com/dbt-labs/dbt/issues/3595), [#3674](https://github.com/dbt-labs/dbt/pull/3674))
+- Get more information on partial parsing version mismatches ([#3757](https://github.com/dbt-labs/dbt/issues/3757), [#3758](https://github.com/dbt-labs/dbt/pull/3758))
+
+## dbt 0.21.0b1 (August 03, 2021)
 
 ## dbt 0.21.0b1 (August 03, 2021)
 
@@ -61,6 +65,7 @@ Contributors:
 ### Under the hood
 - Switch to full reparse on partial parsing exceptions. Log and report exception information. ([#3725](https://github.com/dbt-labs/dbt/issues/3725), [#3733](https://github.com/dbt-labs/dbt/pull/3733))
 - Check for existence of test node when removing. ([#3711](https://github.com/dbt-labs/dbt/issues/3711), [#3750](https://github.com/dbt-labs/dbt/pull/3750))
+- Better error handling for BigQuery job labels that are too long. [#3703](https://github.com/dbt-labs/dbt/pull/3703)
 
 
 ## dbt 0.20.1 (August 11, 2021)
