@@ -62,12 +62,13 @@ class DepsTask(BaseTask):
                 package.install(self.config, renderer)
                 logger.info('  Installed from {}',
                             package.nice_version_name())
-                if package.get_version_latest() > package.get_version():
-                    packages_to_upgrade.append(package.name)
-                    logger.info('  Latest hub registry version {}',
-                                package.get_version_latest())
-                elif package.get_version_latest() == package.get_version():
-                    logger.info('  Up to date!')
+                if package.source_type() == 'hub':
+                    if package.get_version_latest() > package.get_version():
+                        packages_to_upgrade.append(package.name)
+                        logger.info('  Latest hub registry version {}',
+                                    package.get_version_latest())
+                    elif package.get_version_latest() == package.get_version():
+                        logger.info('  Up to date!')
                 if package.get_subdirectory():
                     logger.info('   and subdirectory {}\n',
                                 package.get_subdirectory())
