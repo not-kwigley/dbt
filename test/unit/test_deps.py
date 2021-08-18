@@ -386,6 +386,57 @@ class TestHubPackage(unittest.TestCase):
         self.assertEqual(c_pinned.version, '0.1.4a1')
         self.assertEqual(c_pinned.source_type(), 'hub')
 
+    def test_get_version_latest(self):
+        a_contract = RegistryPackage(
+            package='fishtown-analytics-test/a',
+            version='>0.1.0',
+            install_prerelease=True
+        )
+        b_contract = RegistryPackage(
+            package='fishtown-analytics-test/a',
+            version='<0.1.4'
+        )
+        a = RegistryUnpinnedPackage.from_contract(a_contract)
+        b = RegistryUnpinnedPackage.from_contract(b_contract)
+        c = a.incorporate(b)
+
+        self.assertEqual(c.package, 'fishtown-analytics-test/a')
+        self.assertEqual(
+            c.versions,
+            [
+                VersionSpecifier(
+                    build=None,
+                    major='0',
+                    matcher='>',
+                    minor='1',
+                    patch='0',
+                    prerelease=None,
+                ),
+                VersionSpecifier(
+                    build=None,
+                    major='0',
+                    matcher='<',
+                    minor='1',
+                    patch='4',
+                    prerelease=None,
+                ),
+            ]
+        )
+
+        c_pinned = c.resolved()
+        print(f"sung: {c_pinned.get_version_latest()}")
+        self.assertEqual(c_pinned.package, 'fishtown-analytics-test/a')
+        self.assertEqual(c_pinned.version, '0.1.3')
+        self.assertEqual(c_pinned.get_version_latest(), '0.1.4a1')
+        self.assertEqual(c_pinned.source_type(), 'hub')
+        # assert logging example: 'Latest hub registry version 0.4.1'
+        # assert logging example: Upgrades available for: ['dbt-labs/dbt_utils', 'calogica/dbt_expectations']
+
+    def test_version_up_to_date_logging(self):
+        # assert latest version matches latest version
+        # assert installed version matches installed version
+        # assert logging example: 'Up to date!'
+        pass
 
 class MockRegistry:
     def __init__(self, packages):
@@ -481,17 +532,3 @@ class TestPackageSpec(unittest.TestCase):
         self.assertEqual(resolved[0].version, '0.1.3')
         self.assertEqual(resolved[1].name, 'fishtown-analytics-test/b')
         self.assertEqual(resolved[1].version, '0.2.1')
-    
-    def test_upgrade_version_logging(self):
-        # use the mock registry to have a static latest version of a dbt packages
-        # assert latest version matches latest version
-        # assert installed version matches installed version
-        # assert logging example: 'Latest hub registry version 0.4.1'
-        # assert logging example: Upgrades available for: ['dbt-labs/dbt_utils', 'calogica/dbt_expectations']
-        pass
-
-    def test_version_up_to_date_logging(self):
-        # assert latest version matches latest version
-        # assert installed version matches installed version
-        # assert logging example: 'Up to date!'
-        pass
