@@ -61,13 +61,13 @@ class DepsTask(BaseTask):
                 package_name = package.name
                 source_type = package.source_type()
                 version = package.get_version()
-                version_latest = package.get_version_latest()
 
                 logger.info('Installing {}', package)
                 package.install(self.config, renderer)
                 logger.info('  Installed from {}',
                             package.nice_version_name())
                 if source_type == 'hub':
+                    version_latest = package.get_version_latest()
                     if version_latest > version:
                         packages_to_upgrade.append(package_name)
                         logger.info('  Latest hub registry version {}',
