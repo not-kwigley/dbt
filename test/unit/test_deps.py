@@ -429,14 +429,7 @@ class TestHubPackage(unittest.TestCase):
         self.assertEqual(c_pinned.version, '0.1.3')
         self.assertEqual(c_pinned.get_version_latest(), '0.1.4a1')
         self.assertEqual(c_pinned.source_type(), 'hub')
-        # assert logging example: 'Latest hub registry version 0.4.1'
-        # assert logging example: Upgrades available for: ['dbt-labs/dbt_utils', 'calogica/dbt_expectations']
 
-    def test_version_up_to_date_logging(self):
-        # assert latest version matches latest version
-        # assert installed version matches installed version
-        # assert logging example: 'Up to date!'
-        pass
 
 class MockRegistry:
     def __init__(self, packages):
