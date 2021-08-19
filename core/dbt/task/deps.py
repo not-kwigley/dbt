@@ -58,25 +58,30 @@ class DepsTask(BaseTask):
 
             packages_to_upgrade = []
             for package in final_deps:
+                package_name = package.name
+                source_type = package.source_type()
+                version = package.get_version()
+                version_latest = package.get_version_latest()
+
                 logger.info('Installing {}', package)
                 package.install(self.config, renderer)
                 logger.info('  Installed from {}',
                             package.nice_version_name())
-                if package.source_type() == 'hub':
-                    if package.get_version_latest() > package.get_version():
-                        packages_to_upgrade.append(package.name)
+                if source_type == 'hub':
+                    if version_latest > version:
+                        packages_to_upgrade.append(package_name)
                         logger.info('  Latest hub registry version {}',
-                                    package.get_version_latest())
-                    elif package.get_version_latest() == package.get_version():
+                                    version_latest)
+                    elif version_latest == version:
                         logger.info('  Up to date!')
                 if package.get_subdirectory():
                     logger.info('   and subdirectory {}\n',
                                 package.get_subdirectory())
 
                 self.track_package_install(
-                    package_name=package.name,
-                    source_type=package.source_type(),
-                    version=package.get_version())
+                    package_name=package_name,
+                    source_type=source_type,
+                    version=version)
             if packages_to_upgrade:
                 logger.info('Upgrades available for: {}', packages_to_upgrade)
 
