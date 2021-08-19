@@ -65,6 +65,7 @@ Contributors:
 ### Under the hood
 - Switch to full reparse on partial parsing exceptions. Log and report exception information. ([#3725](https://github.com/dbt-labs/dbt/issues/3725), [#3733](https://github.com/dbt-labs/dbt/pull/3733))
 - Better error handling for BigQuery job labels that are too long. [#3703](https://github.com/dbt-labs/dbt/pull/3703)
+- Better dbt hub registry packages version logging that prompts the user for upgrades to relevant packages ([#3560](https://github.com/dbt-labs/dbt/issues/3560), [#3759](https://github.com/dbt-labs/dbt/pull/3759))
 
 ### Fixes
 - Check for existence of test node when removing. ([#3711](https://github.com/dbt-labs/dbt/issues/3711), [#3750](https://github.com/dbt-labs/dbt/pull/3750))
