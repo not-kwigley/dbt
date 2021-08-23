@@ -70,12 +70,12 @@ class DepsTask(BaseTask):
                     version_latest = package.get_version_latest()
                     if version_latest > version:
                         packages_to_upgrade.append(package_name)
-                        logger.info('  Latest hub registry version {}',
+                        logger.info('  Update available from hub: version {}',
                                     version_latest)
                     elif version_latest == version:
                         logger.info('  Up to date!')
                 if package.get_subdirectory():
-                    logger.info('   and subdirectory {}\n',
+                    logger.info('   and subdirectory {}',
                                 package.get_subdirectory())
 
                 self.track_package_install(
@@ -83,7 +83,9 @@ class DepsTask(BaseTask):
                     source_type=source_type,
                     version=version)
             if packages_to_upgrade:
-                logger.info('\nUpgrades available for: {}', packages_to_upgrade)
+                logger.info('\nUpdates available from hub: {} \
+                \nUpdate your versions in packages.yml, then run dbt deps', \
+                        packages_to_upgrade)
 
     @classmethod
     def from_args(cls, args):
