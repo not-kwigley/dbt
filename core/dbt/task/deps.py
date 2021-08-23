@@ -84,8 +84,8 @@ class DepsTask(BaseTask):
                     version=version)
             if packages_to_upgrade:
                 logger.info('\nUpdates available from hub: {} \
-                \nUpdate your versions in packages.yml, then run dbt deps', \
-                        packages_to_upgrade)
+                \nUpdate your versions in packages.yml, then run dbt deps',
+                            packages_to_upgrade)
 
     @classmethod
     def from_args(cls, args):
