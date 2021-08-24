@@ -109,6 +109,10 @@ class BigQueryCredentials(Credentials):
     @property
     def type(self):
         return 'bigquery'
+        
+    @property
+    def unique_field(self):
+        return self.database
 
     def _connection_keys(self):
         return ('method', 'database', 'schema', 'location', 'priority',
