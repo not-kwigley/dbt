@@ -109,7 +109,7 @@ class BigQueryCredentials(Credentials):
     @property
     def type(self):
         return 'bigquery'
-        
+
     @property
     def unique_field(self):
         return self.database

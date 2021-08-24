@@ -1,5 +1,9 @@
 ## dbt 0.21.0 (Release TBD)
 
+### Under the hood
+
+- Add `adapter_unique_id` to invocation context in anonymous usage tracking, to better understand dbt adoption ([#3713](https://github.com/dbt-labs/dbt/issues/3713), [#3796](https://github.com/dbt-labs/dbt/issues/3796))
+
 ## dbt 0.21.0b2 (August 19, 2021)
 
 
