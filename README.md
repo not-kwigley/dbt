@@ -17,7 +17,7 @@
 
 ![dbt architecture](https://raw.githubusercontent.com/dbt-labs/dbt/6c6649f9129d5d108aa3b0526f634cd8f3a9d1ed/etc/dbt-arch.png)
 
-## Understanding dbt
+## Understanding dbt edit
 
 Analysts using dbt can transform their data by simply writing select statements, while dbt handles turning these statements into tables and views in a data warehouse.
 
