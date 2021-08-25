@@ -17,10 +17,8 @@ USE_EXPERIMENTAL_PARSER = None
 WRITE_JSON = None
 PARTIAL_PARSE = None
 USE_COLORS = None
+
 STORE_FAILURES = None
-
-
-
 
 
 def env_set_truthy(key: str) -> Optional[str]:
